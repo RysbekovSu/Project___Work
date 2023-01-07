@@ -1,0 +1,222 @@
+{% extends 'HeaderandFooter.html' %}
+{% load static%}
+{% block content %}
+<style>
+body{
+    background:#CAC4B0;
+}
+
+
+a:hover {
+    color: #005e7c;
+    text-decoration: none;
+    transform: scale(1.1);
+}
+a{
+    text-decoration:none;
+
+}
+#cont {
+    max-width: 1800px;
+    margin-left: 300px;
+    padding:100px 0;
+    justify-content:center;
+
+}
+.btn btn-primary{
+    color:white;
+}
+ body,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Raleway", sans-serif;
+      }
+      .textcols {
+        overflow: hidden;
+        width: 1000px;
+        margin-bottom:50px;
+        margin-top:+80px;
+        background-color: #f1f1f1;
+        box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.5);
+      }
+      .textcols-left {
+        float: left;
+        width: 48%;
+        padding: 30px;
+      }
+      .textcols-right {
+        float: right;
+        width: 48%;
+        padding: 30px;
+      }
+      .header {
+        font-size: 20px;
+      }
+      .icon {
+        width: 40px;
+        margin-left: 5px;
+      }
+      .spisok {
+        list-style-type: none;
+      }
+     .double-border-button {
+        text-decoration: none;
+        display: inline-block;
+
+        margin: 20px 20px;
+        text-align:center;
+        padding: 10px 30px;
+        position: relative;
+        border: 2px solid red;
+        color: red;
+        font-family: "Montserrat", sans-serif;
+        transition: 0.4s;
+      }
+      .double-border-button:after {
+        content: "";
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        margin: auto;
+        border: 2px solid red;
+        transition: 0.4s;
+      }
+      .double-border-button:hover:after {
+        border-color: red;
+        width: calc(100% - 10px);
+        height: calc(100% + 10px);
+      }
+
+      .double-border-button2 {
+        text-decoration: none;
+        display: inline-block;
+
+        margin: 20px 20px;
+        text-align:center;
+        padding: 10px 30px;
+        position: relative;
+        border: 2px solid green;
+        color: green;
+        font-family: "Montserrat", sans-serif;
+        transition: 0.4s;
+      }
+      .double-border-button2:after {
+        content: "";
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        margin: auto;
+        border: 2px solid green;
+        transition: 0.4s;
+      }
+      .double-border-button2:hover:after {
+        border-color: green;
+        width: calc(100% - 10px);
+        height: calc(100% + 10px);
+      }
+a:hover{
+  color:brown;
+  transition:0.5;
+}
+
+</style>
+
+<div>
+      <main> <div class="container" id="cont">
+
+{% for i in vacancy %}
+<div class="textcols">
+      <!-- первая колонна -->
+      <div class="textcols-left">
+        <!-- заголовок -->
+        <div class="header">{{i.name}}</div>
+        <!-- описание -->
+        <div class="water">
+          <ul>
+            <li class="spisok">
+              <img src="{% static 'main/img2/Calendar Add.png' %}" alt="" /> Schedule: {{i.schedule}}
+            </li>
+            <li class="spisok">
+              <img src="{% static 'main/img2/Sledgehammer.png'%}" alt="" /> Experience: {{i.experience}}years
+            </li>
+            <li class="spisok">
+              <img src="{% static 'main/img2/Dollar.png'%}" alt="" /> Salary: {{i.salary}}
+            </li>
+            <li class="spisok">
+              <img src="{% static 'main/img2/Pen New Round.png'%}" alt="" />
+              Description:
+              <br />
+              {{i.description}}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- вторая колонна -->
+      <div class="textcols-right">
+        <ul>
+          <h2>Contact us</h2>
+          <li class="spisok">
+            <img src="{% static 'main/img2/Alarm.png'%}" alt="" />Avilable time: 09:00 to 17:30
+          </li>
+          <li class="spisok">
+            <img src="{% static 'main/img2/Phone.png'%}" alt="" />
+            <ul>
+              <li>Megacom: {{i.Megacom}}</li>
+              <li>Oshka!:{{i.Oshka}}</li>
+            </ul>
+          </li>
+          <li class="spisok">
+            <img src="{% static 'main/img2/Letter.png'%}" /><a
+              href="mailto:{{i.email}}"
+              >{{i.email}}</a
+            >
+          </li>
+          <li class="spisok">
+            <img class="icon" src="{% static 'main/img2/telegram.png'%}" alt="" /><a
+              href="{{i.telegram}}"
+              >Message</a
+            >
+          </li>
+          <li class="spisok">
+            <img class="icon" src="{% static 'main/img2/whatsapp.png'%}" alt="" /><a
+              href="{{i.whatsapp}}"
+              >Message</a>
+          </li>
+                    {% if request.user.is_superuser %}
+                <a class="double-border-button" href="/vacancy/{{i.id}}/delete">Delete
+            </a>
+            <a class="double-border-button2" href="/vacancy/{{i.id}}/update">Update
+            </a>
+            {% endif %}
+        </ul>
+      </div>
+    </div>
+{% endfor %}
+
+
+    </div></main>
+    </div>
+
+{% endblock %}
+
+
+<!--<div class="vacancy">-->
+<!--
+     <h1 align="center">{{i.name}}</h1>-->
+<!--<h2 align="center">{{i.description}}</h2>-->
+<!--<h2 align="center" class="delete"><a href="/vacancy/{{i.id}}/delete"><button >delete</button></a></h2>-->
+<!--          </div>-->

@@ -1,0 +1,409 @@
+{% extends 'HeaderandFooter.html' %}
+{% load static%}
+{% block content %}
+
+    <style>
+       html,
+      body,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Roboto", sans-serif;
+
+      }
+      .double-border-button {
+        text-decoration: none;
+        display: inline-block;
+        margin: 10px 20px;
+        padding: 10px 30px;
+        position: relative;
+        border: 2px solid #616161;
+        color: rgb(0, 0, 0);
+        font-family: "Montserrat", sans-serif;
+        transition: 0.4s;
+      }
+      .double-border-button:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        margin: auto;
+        border: 2px solid #616161;
+        transition: 0.4s;
+      }
+      .double-border-button:hover:after {
+        border-color: #616161;
+        width: calc(100% - 10px);
+        height: calc(100% + 10px);
+      }
+      .button1 {
+        text-align: center;
+      }
+      .img_icon {
+        margin-right: 5px;
+      }
+      body{
+      background:#778899;
+      color:black;
+      }
+.nah{
+margin-top:+50px;
+}
+    </style>
+   <div class="nah">
+     <div class="w3-content w3-margin-top" style="max-width: 1400px">
+      <div class="w3-row-padding">
+        <!-- Профиль -->
+        <div class="w3-third">
+          <div class="w3-white w3-text-grey w3-card-4">
+            <div class="w3-display-container">
+              <img
+                src="{{ object.image.url }}"
+                style="width: 100%"
+                alt="Avatar"
+              />
+
+            </div>
+            <div class="w3-container">
+              <p>
+                <i><img src="Suitcase.png" alt="" class="img_icon" /></i
+                ><h2>{{object.name}}</h2>
+              </p>
+              <p>
+                <i><img src="Suitcase.png" alt="" class="img_icon" /></i
+                >{{object.profession}}
+              </p>
+              <p>
+                <i><img src="Home.png" alt="" class="img_icon" /></i
+                >Address: {{object.address}}
+              </p>
+              <p>
+                <i><img src="Letter.png" alt="" class="img_icon" /></i
+                >Email:{{object.email}}
+              </p>
+              <p>
+                <i><img src="Smartphone 2.png" alt="" class="img_icon" /></i
+                >{{object.telephonenumber}}
+              </p>
+              <br />
+              <div class="button1">
+                 {% if request.user.is_superuser %}
+                <a
+                  href="/employees/{{object.id}}/delete"
+                  class="double-border-button"
+                  >Delete</a
+                >
+                <a
+                  href="/employees/{{object.id}}/update"
+                  class="double-border-button"
+                  >Update</a
+                >
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- конец профиля -->
+
+        <!-- правая часть -->
+        <div class="w3-twothird">
+          <div class="w3-container w3-card w3-white w3-margin-bottom">
+            <h2 class="w3-text-grey w3-padding-16">About the person</h2>
+
+            <div class="w3-container">
+              <p>{{object.description}}</p>
+              <hr />
+            </div>
+          </div>
+        </div>
+        <!-- конец правой части -->
+      </div>
+    </div>
+   </div>
+{% endblock %}
+
+
+<!--<li>Age: {{object.age}}</li>-->
+<!--            <li>Birthday: {{object.birthday}}</li>-->
+<!--            <li>Job: </li>-->
+<!--            <li>Status: {{object.status}}</li>-->
+<!--            <li>Work Experience: {{object.experience}} years</li>-->
+<!--            {% if request.user.is_superuser %}-->
+<!--             <li>-->
+<!--              <a href="/home/{{object.id}}/delete" class="double-border-button"-->
+<!--                >Delete</a-->
+<!--              >-->
+<!--              <a href="/home/{{object.id}}/update" class="double-border-button"-->
+<!--                >Update</a-->
+<!--              >-->
+<!--            </li>-->
+<!--            {% endif %}-->
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+
+<!-- <p>{{object.description}}</p>-->
+
+<!--</body>-->
+<!--</html>-->
+
+
+<!--<!DOCTYPE html>-->
+
+<!--<html lang="en">-->
+<!--  <head>-->
+<!--    <meta charset="UTF-8" />-->
+<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge" />-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0" />-->
+<!--    <title>Profile</title>-->
+
+<!--  <style>-->
+<!--.card {-->
+<!--  display: flex;-->
+<!--  width: 100%;-->
+<!--  height: 714px;-->
+<!--  background: linear-gradient(#7ec5df, #087ca7);-->
+<!--  border-radius: 30px 0px 0px 30px;-->
+<!--  font-family: sans-serif;-->
+<!--  line-height: 30px;-->
+<!--}-->
+<!--.heading {-->
+<!--  text-align: center;-->
+<!--  font-family: sans-serif;-->
+<!--  font-size: 30px;-->
+<!--  color: #087ca7;-->
+<!--}-->
+<!--.img__profile1 {-->
+<!--  padding: 61px 99px 0px 99px;-->
+<!--}-->
+<!--.img__profile {-->
+<!--  width: 254px;-->
+<!--  border-radius: 50%;-->
+<!--  border: 8px solid #1ba4d5fa;-->
+<!--  box-shadow: 20px 20px 35px rgba(0, 0, 0, 0.46);-->
+<!--}-->
+<!--.stats__profile li {-->
+<!--  list-style: none;-->
+<!--}-->
+<!--.profile {-->
+<!--  width: 454px;-->
+<!--  height: 714px;-->
+<!--  background-color: #087ca7;-->
+<!--  border-radius: 30px 0px 0px 30px;-->
+<!--}-->
+<!--.stats__profile {-->
+<!--  position: absolute;-->
+<!--  padding-right: 140px;-->
+<!--}-->
+
+<!--.name {-->
+<!--  text-align: center;-->
+<!--  border: 2px solid #086080;-->
+<!--  padding: 5px;-->
+<!--  background-color: #119acb;-->
+<!--  border-radius: 5px;-->
+<!--}-->
+<!--/* 277-->
+<!--342 */-->
+<!--.first-column {-->
+<!--}-->
+<!--.second-column {-->
+<!--  padding-top: 20px;-->
+<!--}-->
+
+<!--.title__skill {-->
+<!--  font-size: 20px;-->
+<!--  text-align: center;-->
+<!--  padding-top: 5px;-->
+<!--}-->
+<!--.png__skill {-->
+<!--  width: 125px;-->
+<!--  padding-top: 15px;-->
+<!--}-->
+<!--.text__skill {-->
+<!--}-->
+<!--.first-row {-->
+<!--  display: flex;-->
+<!--  text-align: center;-->
+<!--}-->
+<!--.second-row {-->
+<!--  display: flex;-->
+<!--  padding-top: 30px;-->
+<!--  text-align: center;-->
+<!--}-->
+<!--.sub__skill {-->
+<!--  width: 322px;-->
+<!--  height: 322px;-->
+<!--  background-color: #1b417945;-->
+<!--  margin-left: 149px;-->
+<!--  border-radius: 30px;-->
+<!--  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.46);-->
+<!--}-->
+<!--.sub__skill2 {-->
+<!--  margin-left: 30px;-->
+<!--  width: 322px;-->
+<!--  height: 322px;-->
+<!--  background-color: #1b417945;-->
+<!--  border-radius: 30px;-->
+<!--  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.46);-->
+<!--}-->
+<!--.sub__skill3 {-->
+<!--  margin-left: 149px;-->
+<!--  width: 322px;-->
+<!--  height: 322px;-->
+<!--  background-color: #1b417945;-->
+<!--  border-radius: 30px;-->
+<!--  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.46);-->
+<!--}-->
+<!--.sub__skill4 {-->
+<!--  margin-left: 30px;-->
+<!--  width: 322px;-->
+<!--  height: 322px;-->
+<!--  background-color: #1b417945;-->
+<!--  border-radius: 30px;-->
+<!--  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.46);-->
+<!--}-->
+<!--     .double-border-button {-->
+<!--        text-decoration: none;-->
+<!--        display: inline-block;-->
+<!--        margin: 10px 20px;-->
+<!--        padding: 10px 30px;-->
+<!--        position: relative;-->
+<!--        border: 2px solid white;-->
+<!--        color: white;-->
+<!--        font-family: "Montserrat", sans-serif;-->
+<!--        transition: 0.4s;-->
+<!--      }-->
+<!--      .double-border-button:after {-->
+<!--        content: "";-->
+<!--        position: absolute;-->
+<!--        top: 0;-->
+<!--        left: 0;-->
+<!--        right: 0;-->
+<!--        bottom: 0;-->
+<!--        width: 100%;-->
+<!--        height: 100%;-->
+<!--        margin: auto;-->
+<!--        border: 2px solid rgba(0, 0, 0, 0);-->
+<!--        transition: 0.4s;-->
+<!--      }-->
+<!--      .double-border-button:hover:after {-->
+<!--        border-color: white;-->
+<!--        width: calc(100% - 10px);-->
+<!--        height: calc(100% + 10px);-->
+<!--      }-->
+
+
+<!--  </style>-->
+<!--  </head>-->
+<!--  <body>-->
+<!--    <div class="heading">-->
+<!--      <h1>Profile</h1>-->
+<!--    </div>-->
+<!--    <div class="card">-->
+<!--      <div class="first-column">-->
+<!--        <div class="profile">-->
+<!--          <div class="img__profile1">-->
+<!--            <img src="images/photo.jpg" class="img__profile" />-->
+<!--            <p class="name">{{object.name}}</p>-->
+<!--          </div>-->
+<!--          <ul class="stats__profile">-->
+<!--            <li>Age: 26</li>-->
+<!--            <li>Birthday: 01.01.01</li>-->
+<!--            <li>Job: Teacher</li>-->
+<!--            <li>Status: not married</li>-->
+<!--            <li>Стаж: 26 лкт</li>-->
+<!--             <li>-->
+<!--              <a href="/home/{{object.id}}/delete" class="double-border-button">Delete</a>-->
+<!--              <a href="/home/{{object.id}}/update" class="double-border-button">Update</a>-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="second-column">-->
+<!--        <div class="first-row">-->
+<!--          <div class="sub__skill">-->
+<!--            <div><img src="images/4.png" class="png__skill" /></div>-->
+<!--            <div class="title__skill">Skill</div>-->
+<!--            <div class="text__skill">-->
+<!--              <p>-->
+<!--                Lorem ipsum dolor sit amet consectetur adipisicing elit.-->
+<!--                Necessitatibus natus temporibus consequuntur dolorum facilis-->
+<!--                officiis-->
+<!--              </p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="sub__skill2">-->
+<!--            <div><img src="images/3.png" class="png__skill" /></div>-->
+<!--            <div class="title__skill">Skill</div>-->
+<!--            <div class="text__skill">-->
+<!--              <p>-->
+<!--                Lorem ipsum dolor sit amet consectetur adipisicing elit.-->
+<!--                Necessitatibus natus temporibus consequuntur dolorum facilis-->
+<!--                officiis-->
+<!--              </p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="second-row">-->
+<!--          <div class="sub__skill3">-->
+<!--            <div><img src="images/2.png" class="png__skill" /></div>-->
+<!--            <div class="title__skill">Skill</div>-->
+<!--            <div class="text__skill">-->
+<!--              <p>-->
+<!--                Lorem ipsum dolor sit amet consectetur adipisicing elit.-->
+<!--                Necessitatibus natus temporibus consequuntur dolorum facilis-->
+<!--                officiis-->
+<!--              </p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="sub__skill4">-->
+<!--            <div><img src="images/1.png" class="png__skill" /></div>-->
+<!--            <div class="title__skill">Skill</div>-->
+<!--            <div class="text__skill">-->
+<!--              <p>-->
+<!--                Lorem ipsum dolor sit amet consectetur adipisicing elit.-->
+<!--                Necessitatibus natus temporibus consequuntur dolorum facilis-->
+<!--                officiis-->
+<!--              </p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--  </body>-->
+
+<!--</html>-->
+
+
+
+
+
+
+
+<!--&lt;!&ndash;<!DOCTYPE html>&ndash;&gt;-->
+<!--&lt;!&ndash;<html lang="en">&ndash;&gt;-->
+<!--&lt;!&ndash;<head>&ndash;&gt;-->
+<!--&lt;!&ndash;    <meta charset="UTF-8">&ndash;&gt;-->
+<!--&lt;!&ndash;    <title>Title</title>&ndash;&gt;-->
+<!--&lt;!&ndash;</head>&ndash;&gt;-->
+<!--&lt;!&ndash;<body>&ndash;&gt;-->
+
+<!--&lt;!&ndash; <p>{{object.description}}</p>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;</body>&ndash;&gt;-->
+<!--&lt;!&ndash;</html>&ndash;&gt;-->

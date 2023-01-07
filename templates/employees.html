@@ -1,0 +1,424 @@
+{% extends 'HeaderandFooter.html' %}
+{% load static%}
+{% block content %}
+<style>
+body{
+    background:#778899;
+}
+.card {
+    margin-top:+30px;
+    margin: 10px;
+    width: 300px;
+    background:white;
+
+    text-align: center;
+    padding: 1em;
+    border-radius: 0px;
+    font-weight: bold;
+    position:relative;
+    top: 50px;
+    color:#000000;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+
+
+}
+
+.card:hover {
+     1px 1px #53a7ea,
+        2px 2px #53a7ea,
+        3px 3px #53a7ea;
+    transform: translateY(-10px);
+    transition-duration: .6s;
+    transform: scale(1.07);
+}
+
+.card img {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    border: 2px solid #778899;
+
+}
+
+.rounded-img {
+    width: 60%;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    padding: 0.6em;
+    margin-bottom: 1em;
+
+}
+
+a:hover {
+    color: #40E0D0;
+    text-decoration: none;
+    transform: scale(1.1);
+}
+a{
+    text-decoration:none;
+    color:blue;
+       1px 1px #53a7ea,
+        2px 2px #53a7ea,
+        3px 3px #53a7ea;
+    transform: translateY(-10px);
+    transition-duration: .4s;
+    transform: scale(1.07);
+
+}
+#cont {
+    display:flex;
+    flex-wrap:wrap;
+    max-width: 1800px;
+    margin: 0 auto;
+    padding:100px 0;
+    justify-content:center;
+
+}
+.btn btn-primary{
+    color:white;
+}
+form{
+ margin-top:70px;
+ margin-bottom:-40px;
+ max-width: 300px;
+ height: 20px;
+ margin-left:100px;
+}
+.double-border-button {
+        text-decoration: none;
+        display: inline-block;
+        margin: 10px 20px;
+        padding: 10px 30px;
+        position: relative;
+        border: 2px solid #616161;
+        color: blue;
+        font-family: "Montserrat", sans-serif;
+        transition: 0.4s;
+      }
+      .double-border-button:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        margin: auto;
+        border: 2px solid #616161;
+        transition: 0.4s;
+      }
+      .double-border-button:hover:after {
+        border-color: #616161;
+        width: calc(100% - 10px);
+        height: calc(100% + 10px);
+      }
+</style>
+
+    <div>
+        <form action="">
+    <label for="category">Category</label>
+        <select name="category" id="category">
+      <option value=""></option>
+      <option value="">All</option>
+      {% for i in category %}
+      <option value="?q={{i.title}}">{{i.title}}</option>
+      {% endfor %}
+    </select>
+    </form>
+      <main> <div class="container" id="cont">
+
+
+{% for i in employees %}
+        <div class="card">
+            <img
+              class="rounded-img"
+              src="{{ i.image.url }}"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{i.name}}</h5>
+              <p class="card-text">
+               {{ i.profession }}
+              </p>
+              <a class="double-border-button" href="/employees_detail/{{i.id}} "
+                 class="btn btn-primary" target="_blank">More</a>
+            </div>
+          </div>
+ {% endfor %}
+        </div></main>
+    </div>
+
+<script>
+    category = document.querySelector('#category ')
+    category.addEventListener('change', (e) => {
+      e.preventDefault()
+      window.location.href = `/employees/${e.target.value}`
+})
+
+</script>
+{% endblock %}
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--{% load static %}-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--<meta charset="UTF-8">-->
+<!--<title>posts</title>-->
+<!--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css">-->
+<!--<link rel="stylesheet"-->
+<!--      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"-->
+<!--      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"-->
+<!--      crossorigin="anonymous"-->
+<!--/>-->
+<!--<style>-->
+<!--body{background:#FFFFFF;}-->
+<!--h1,-->
+<!--h2,-->
+<!--h3,-->
+<!--h4,-->
+<!--h5,-->
+<!--h6 {-->
+<!--  margin: 0;-->
+<!--}-->
+
+<!--/* Container */-->
+<!--.container {-->
+<!--  width: 100%;-->
+<!--  max-width: 1200px;-->
+<!--  margin: 0 auto;-->
+<!--}-->
+
+<!--/* Header */-->
+<!--.header {-->
+<!--  width: 100%;-->
+<!--  padding-top: 30px;-->
+
+<!--  position: absolute;-->
+<!--  top: 0;-->
+<!--  left: 0;-->
+<!--  right: 0;-->
+<!--  z-index: 1000;-->
+<!--}-->
+
+<!--.header__inner {-->
+<!--  display: flex;-->
+<!--  justify-content: space-between;-->
+<!--  align-items: center;-->
+<!--}-->
+
+<!--.header__logo {-->
+<!--  font-size: 30px;-->
+<!--  font-weight: 700;-->
+<!--  color: #fff;-->
+<!--}-->
+
+<!--/* Nav */-->
+<!--.nav {-->
+<!--  font-size: 14px;-->
+<!--  text-transform: uppercase;-->
+<!--}-->
+
+<!--.nav__link {-->
+<!--  display: inline-block;-->
+<!--  vertical-align: top;-->
+<!--  margin: 0 15px;-->
+<!--  position: relative;-->
+
+<!--  color: #fff;-->
+<!--  text-decoration: none;-->
+
+<!--  transition: color 0.1s linear;-->
+<!--}-->
+
+<!--.nav__link:after {-->
+<!--  content: "";-->
+<!--  display: block;-->
+<!--  width: 100%;-->
+<!--  height: 3px;-->
+
+<!--  background-color: #fce38a;-->
+<!--  opacity: 0;-->
+
+<!--  position: absolute;-->
+<!--  top: 100%;-->
+<!--  left: 0;-->
+<!--  z-index: 1;-->
+
+<!--  transition: opacity 0.1s linear;-->
+<!--}-->
+
+<!--.nav__link:hover {-->
+<!--  color: #fce38a;-->
+<!--}-->
+
+<!--.nav__link:hover:after,-->
+<!--.nav__link.active:after {-->
+<!--  opacity: 1;-->
+<!--}-->
+
+<!--.nav__link.active {-->
+<!--  color: #fce38a;-->
+<!--}-->
+
+<!--.bg {-->
+<!--  background-color: #2F4F4F;-->
+<!--}-->
+
+<!--*,-->
+<!--*:before,-->
+<!--*:after {-->
+<!--  box-sizing: border-box;-->
+<!--}-->
+
+<!--html {-->
+<!--  font-size: 100%;-->
+<!--}-->
+
+<!--body {-->
+<!--  font-family: acumin-pro, system-ui, sans-serif;-->
+<!--  margin: 0;-->
+<!--  display: grid;-->
+<!--  grid-template-rows: auto 1fr auto;-->
+<!--  font-size: 14px;-->
+<!--  background-color: #ffffff;-->
+<!--  align-items: start;-->
+<!--  min-height: 100vh;-->
+<!--}-->
+
+
+
+<!--.card {-->
+<!--    margin: 20px;-->
+<!--    width: 300px;-->
+<!--    background:#B22222;-->
+<!--    border-radius: 2em;-->
+<!--    text-align: center;-->
+<!--    padding: 1em;-->
+<!--    border-radius: 50px;-->
+<!--    font-weight: bold;-->
+<!--    position:relative;-->
+<!--    top: 50px;-->
+<!--    color:#fff;-->
+<!--    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);-->
+
+
+<!--}-->
+
+<!--.card:hover {-->
+<!--     1px 1px #53a7ea,-->
+<!--        2px 2px #53a7ea,-->
+<!--        3px 3px #53a7ea;-->
+<!--    transform: translateY(-10px);-->
+<!--    transition-duration: .4s;-->
+<!--    transform: scale(1.07);-->
+<!--}-->
+
+<!--.card img {-->
+<!--    border-radius: 50%;-->
+<!--    width: 200px;-->
+<!--    height: 200px;-->
+<!--    margin: auto;-->
+<!--    border: 5px solid #FFFFFF;-->
+
+<!--}-->
+
+<!--.rounded-img {-->
+<!--    width: 60%;-->
+<!--    border-radius: 50%;-->
+<!--    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);-->
+<!--    padding: 0.6em;-->
+<!--    margin-bottom: 1em;-->
+
+<!--}-->
+
+<!--a:hover {-->
+<!--    color: #008000;-->
+<!--    text-decoration: none;-->
+<!--    transform: scale(1.1);-->
+<!--}-->
+
+<!--#cont {-->
+<!--    display:flex;-->
+<!--    flex-wrap:wrap;-->
+<!--    max-width: 1800px;-->
+<!--    margin: 0 auto;-->
+<!--    padding:100px 0;-->
+<!--    justify-content:center;-->
+
+<!--}-->
+<!--.btn btn-primary{-->
+<!--color:white;-->
+<!--}-->
+
+<!--</style>-->
+
+<!--</head>-->
+<!--<body class="bg">-->
+<!--    <div>-->
+<!--      <header class="header">-->
+<!--        <div class="container">-->
+<!--          <div class="header__inner">-->
+<!--            <div class="header__logo"><img src="{% static 'main/img/Inai.png' %}" height="100"></div>-->
+<!--            <div class="header_img"></div>-->
+
+<!--            <nav class="nav">-->
+<!--              <a class="nav__link" href="/main/">Main</a>-->
+<!--              <a class="nav__link active" href="#">Home</a>-->
+<!--               {% if request.user.is_superuser %}-->
+<!--              <a class="nav__link " href="/add-person/">Add a teacher</a>-->
+<!--              <a class="nav__link " href="/registration/">Add an Administrator</a>-->
+<!--               {% endif %}-->
+<!--              <a class="nav__link" href="/contacts/">Contact</a>-->
+<!--               {% if request.user.is_authenticated%}-->
+<!--        <a class="nav__link" href="/logout/">-->
+<!--          <img src="{% static 'main/img/img_4.png' %}" width=30px alt="logout">-->
+<!--        </a>-->
+<!--        {% else %}-->
+<!--        <a class="nav__link" href="/login/">-->
+<!--          <img src="{% static 'main/img/img_3.png' %}" width=30px alt="login">-->
+<!--        </a>-->
+<!--        {% endif %}-->
+<!--            </nav>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </header>-->
+<!--    </div>-->
+
+<!--    <div>-->
+<!--      <main> <div class="container" id="cont">-->
+<!--{% for i in home %}-->
+<!--        <div class="card">-->
+
+<!--            <img-->
+<!--              class="rounded-img"-->
+<!--              src="{{ i.image.url }}"-->
+<!--              class="card-img-top"-->
+<!--              alt="..."-->
+<!--            />-->
+<!--            <div class="card-body">-->
+<!--              <h5 class="card-title">{{i.name}}</h5>-->
+<!--              <p class="card-text">-->
+<!--               {{ i.profession }}-->
+<!--              </p>-->
+<!--              <a href="/home_detail/{{i.id}} " class="btn btn-primary" target="_blank">More</a>-->
+
+
+<!--            </div>-->
+<!--          </div>-->
+<!-- {% endfor %}-->
+<!--        </div></main>-->
+<!--    </div>-->
+
+
+
+
+
+<!--</body>-->
+
+<!--</html>-->

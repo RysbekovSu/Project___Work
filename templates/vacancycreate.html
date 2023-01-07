@@ -1,0 +1,55 @@
+{% extends 'HeaderandFooter.html' %}
+{% load static%}
+{% block content %}
+<style>
+    body{
+        background:#646B63;
+        color:#FFFFFF;
+    }
+
+    .submit{
+        border: 2px solid black;
+        border-radius: 10px;
+        max-width: 300px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        margin-bottom: 20px
+    }
+
+    form input, form textarea, form select{
+        border: 2px solid black;
+        border-radius: 20px;
+    }
+
+    form{
+        max-width: 300px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .teacher{
+        margin-top:100px;
+        padding:20px;
+        font-size:30px;
+    }
+
+    aside img{
+        margin-top: 30px;
+        margin-left: 70px;
+        width: 10%;
+        height:10%;
+    }
+</style>
+   <div class   ="tt"> <main><div class="form" id="form">
+        <h1 class="teacher" align="center">Add a vacancy</h1>
+<form action='/add-vacancy/' method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input class="submit"  type="submit" value="add">
+</form>
+  </div></main></div>
+{% endblock %}

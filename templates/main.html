@@ -1,0 +1,341 @@
+{% extends 'HeaderandFooter.html' %}
+{% load static %}
+{% block content %}
+<style>
+
+   body,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6{
+        font-family: "Raleway", sans-serif;
+      }
+
+      body,
+      html{
+        height: 100%;
+        line-height: 1.8;
+        background:#F1F1F1;
+      }
+
+      /* Full height image header */
+      .bg1{
+        background-position: center;
+        background-size: cover;
+        background-image: url(img/header_img.png);
+        min-height: 100%;
+
+      }
+
+      .w3-bar .w3-button{
+        padding: 16px;
+
+      }
+      a{
+        text-decoration: none;
+      }
+      #mail{
+        text-decoration: underline;
+      }
+      .water_my{
+        line-height: 2.1;
+
+      }
+      body {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.column {
+  float: left;
+  display: flex;
+
+  margin-bottom: 16px;
+  padding: 0 8px;
+
+}
+
+.contacts {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.container {
+  padding: 2px 32px;
+
+}
+
+.container::after,
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+
+}
+
+.title {
+  color: grey;
+}
+.img {
+  border-radius: 0% 0% 10% 10%;
+}
+.row {
+  display: flex;
+}
+h2 {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+
+
+
+.column {
+   display:flex;
+    flex-wrap: nowrap;
+    max-width: px;
+    margin: 0 auto;
+    padding:px 0;
+    justify-content:center;
+}
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: 30px;
+    text-align: center;
+    background: white;
+
+}
+
+.title {
+    color: grey;
+    font-size: 18px;
+}
+
+button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+
+}
+
+a {
+    text-decoration: none;
+    font-size: 22px;
+    color: black;
+}
+
+button:hover, a:hover {
+    opacity: 0.7;
+}
+
+.img {
+
+}
+.culmuns-row{
+    display:flex;
+}
+.w3-card {
+background:white;
+}
+.gofuckyourself{
+margin-top:50px;
+}
+.aboutthecompany{
+padding-left: 40px;
+padding-right: 40px;
+text-align: justify;
+font-size:20px;
+}
+.history{
+    font-size:20px;
+}
+.double-border-button {
+        text-decoration: none;
+        display: inline-block;
+        margin: 10px 20px;
+        padding: 10px 30px;
+        position: relative;
+        border: 2px solid #616161;
+        color: blue;
+        text-align:center
+        font-family: "Montserrat", sans-serif;
+        transition: 0.4s;
+      }
+      .double-border-button:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        margin: auto;
+        border: 2px solid #616161;
+        transition: 0.4s;
+      }
+      .double-border-button:hover:after {
+        border-color: #616161;
+        width: calc(100% - 10px);
+        height: calc(100% + 10px);
+      }
+      i{
+      text-align:center;
+      }
+  </style>
+
+{%for i in aboutInai %}
+<div class="gofuckyourself">
+ <!-- Navbar (sit on top) -->
+
+    <header class="bg1 w3-display-container w3-grayscale-min" id="home">
+        <img class="bg1 w3-display-container w3-grayscale-min" width="1580px" src="{{ i.image.url }}" >
+
+      <div class="w3-display-left w3-text-white" style="padding: 48px">
+        <span class="w3-jumbo w3-hide-small">{{i.quote}}</span
+        ><br />
+        <span class="w3-xxlarge w3-hide-large w3-hide-medium"
+          >Start something that matters</span
+        ><br />
+        <span class="w3-large"
+          ></span
+        >
+
+        <p>
+          <a
+            href="#about"
+            class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off"
+            >Learn more and start today</a
+          >
+        </p>
+      </div>
+
+    </header>
+
+    <!-- About Section -->
+    <div class="w3-container" style="padding: 128px 16px" id="about">
+      <h3 class="w3-center"></h3>
+      <h1><p  align="center">History</p></h1>
+      <div class="w3-row-padding w3-center water_my" style="margin-top: 13px">
+        <p class="aboutthecompany">{{i.description}}</p>
+
+      </div>
+ {% if request.user.is_superuser %}
+                <p align="center"><a class="double-border-button" href="/aboutInai/{{i.id}}/update">Update</a></p>
+           {% endif %}
+    </div>
+{% endfor %}
+<!--    &lt;!&ndash; team-->
+<!--    TEAM &ndash;&gt;-->
+    <div class="w3-container" style="padding: 128px 16px" id="team">
+      <h3 class="w3-center">The most popular teachers</h3>
+
+        {% for i in main %}
+        <div class="w3-col l3 m6 w3-margin-bottom w3-grayscale w3-row-padding" style="margin-top: 64px">
+          <div class="w3-card">
+            <img src="{{i.image.url}}" alt="" style="width: 100%" />
+            <div class="w3-container">
+              <h3>{{i.name}}</h3>
+              <p class="w3-opacity">Mathematics</p>
+              <p>
+                {{i.description}}
+              </p>
+              <p>
+
+                <a href="{{i.email}}">
+                 <a href="mailto:{{i.email}}"><button class="w3-button w3-light-grey w3-block">
+                    <i class="fa fa-envelope"></i> {{i.email}}
+                  </button></a>
+                </a>
+              </p>
+               <a href="{{i.instagram}}"><i class="fa fa-instagram"></i></a>
+        <a href="{{i.whatsapp}}"><i class="fa fa-whatsapp"></i></a>
+        <a href="{{i.telegram}}"><i class="fa fa-telegram"></i></a>
+                {% if request.user.is_superuser %}
+           <a class="double-border-button"  href="/main/{{i.id}}/delete">Delete</a>
+                <a class="double-border-button" href="/main/{{i.id}}/update">Update</a>
+           {% endif %}
+            </div>
+          </div>
+        </div>
+
+          {% endfor %}
+      </div>
+    </div>
+
+
+
+
+    <!-- Promo Section "Statistics" -->
+    {%for i in stats%}
+    <div class="w3-container w3-row w3-center w3-dark-grey w3-padding-64">
+      <div class="w3-quarter">
+        <span class="w3-xxlarge">{{i.students}}+</span>
+        <br />Students
+      </div>
+      <div class="w3-quarter">
+        <span class="w3-xxlarge">{{i.graduates}}+</span>
+        <br />Graduates
+      </div>
+      <div class="w3-quarter">
+        <span class="w3-xxlarge">{{i.employees}}+</span>
+        <br />Employees
+      </div>
+      <div class="w3-quarter">
+        <span class="w3-xxlarge">{{i.meetings}}+</span>
+        <br />Meetings
+      </div>
+        {% if request.user.is_superuser %}
+        <a class="double-border-button" href="/stats/{{i.id}}/update">Update</a>
+  {% endif %}
+    </div>
+  {% endfor %}
+
+
+
+
+
+
+
+    <!-- Contact Section -->
+        <div class="culmuns-row" >
+    <div class="column">
+        {% for i in contact %}
+    <div class="card">
+        <img class="img" src="{{i.image.url}}" alt="John" style="width:100%">
+        <h1>{{i.name}}</h1>
+        <p class="title">{{i.profession}}</p>
+        <a href="mailto:{{i.email}}"><p>{{i.email}}</p></a>
+        <a href="{{i.instagram}}"><i class="fa fa-instagram"></i></a>
+        <a href="{{i.whatsapp}}"><i class="fa fa-whatsapp"></i></a>
+        <a href="{{i.telegram}}"><i class="fa fa-telegram"></i></a>
+         {% if request.user.is_superuser %}
+           <a class="double-border-button"  href="/contact/{{i.id}}/delete">Delete</a>
+                <a class="double-border-button" href="/contact/{{i.id}}/update">Update</a>
+           {% endif %}
+
+      </div>
+        {% endfor %}
+    </div>
+
+
+
+</div>
+
+
+</div>
+
+{% endblock %}
