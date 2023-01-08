@@ -43,10 +43,10 @@ class Contacts(models.Model):
 
 
 class Stats(models.Model):
-    students = models.IntegerField(max_length=100, default=0)
-    graduates = models.IntegerField(max_length=100, default=0)
-    employees = models.IntegerField(max_length=100, default=0)
-    meetings = models.IntegerField(max_length=100, default=0)
+    students = models.IntegerField(default=0)
+    graduates = models.IntegerField(default=0)
+    employees = models.IntegerField(default=0)
+    meetings = models.IntegerField(default=0)
     name = models.CharField(max_length=100, default='stats')
 
     def __str__(self):
